@@ -1,0 +1,70 @@
+{% extends 'home/index.html' %}
+{% load static %}
+{% block title %} Cart{% endblock title %}
+{% block body %}
+<div class="container">
+
+
+
+  <div class="col-md-5 col-lg-auto ">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-muted" _msthash="1320709" _msttexthash="201227"
+        style="direction: ltr; text-align: left;">Shopping Cart</span>
+      <span class="badge bg-secondary rounded-pill" _msthash="1320865" _msttexthash="4641"
+        style="direction: ltr;">{{order.get_cart_items}}</span>
+    </h4>
+  </div>
+</div>
+
+<div class="container">
+  {% for item in items %}
+  <div class="col-md-5 col-lg-auto ">
+
+    <ul class="list-group mb-3">
+      <li class="list-group-item d-flex justify-content-between lh-sm">
+        <div style="direction: ltr; text-align: left;">
+          <h6 class="my-0" _msthash="1855802" _msttexthash="175006" style="direction: ltr; text-align: left;">
+            {{item.product.name}} </h6>
+          <p class="quantity">&#215;{{item.quantity}}</p>
+          <div class=" list-group-item d-flex justify-content-between lh-sm quantity">
+            <div style="direction: ltr; text-align: left;">
+              <img data-product="{{item.product.product_id}}" data-action="add" class="chg-quantity update-cart"
+                src="{% static  'images/arrow-up.png' %}" width="25">
+
+              <img data-product="{{item.product.product_id}}" data-action="remove" class="chg-quantity update-cart"
+                src="{% static  'images/arrow-down.png' %}" width="25">
+            </div>
+          </div>
+          <small class="text-muted" _msthash="1555567" _msttexthash="326508">{{item.product.desc}}</small>
+        </div>
+        <span class="text-muted" _msthash="1617447" _msttexthash="14222" style="direction: ltr; text-align: left;">Price
+          &#8377;{{item.product.price}}</span>
+      </li>
+
+
+      <li class="list-group-item d-flex justify-content-between">
+        <span _msthash="1618175" _msttexthash="118313" style="direction: ltr; text-align: left;">Total </span>
+        <strong _msthash="1748370" _msttexthash="14092"
+          style="direction: ltr; text-align: left;">&#8377;{{item.get_total}}</strong>
+      </li>
+    </ul>
+
+
+  </div>
+  {% endfor %}
+  <div class="container">
+    <li class="list-group-item d-flex justify-content-between">
+      <span _msthash="1618175" _msttexthash="118313" style="direction: ltr; text-align: left;">Grand Total </span>
+      <strong _msthash="1748370" _msttexthash="14092"
+        style="direction: ltr; text-align: left;">&#8377;{{order.get_cart_total}}</strong>
+    </li>
+  </div>
+</div>
+<div class="container my-4">
+  <div class="col-md-5 col-lg-auto ">
+    <button  class="btn btn-light" ><a href="/" type="button"> &#8592; Continue Shopping</a>  </button>
+    <button  class="btn btn-dark text-dark" ><a href="/checkout" type="button">  Checkout &#8594;</a>  </button>
+    
+  </div>
+</div>
+{% endblock %}
